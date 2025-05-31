@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P File Sharing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/webtorrent@latest/webtorrent.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <i class="fas fa-share-alt logo-icon"></i>
+                <h1>Bit Torrent</h1>
+            </div>
+            <p class="tagline">Browser-based P2P File Sharing</p>
+            <div class="theme-toggle">
+                <input type="checkbox" id="darkMode" class="toggle">
+                <label for="darkMode">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <span class="toggle-text">Dark Mode</span>
+                </label>
+            </div>
+        </header>
+
+        <main class="app-content">
+            <div class="content-grid">
+                <section class="upload-section card">
+                    <div class="section-header">
+                        <i class="fas fa-upload section-icon"></i>
+                        <h2>Share Files</h2>
+                    </div>
+                    <div class="upload-area" id="dropArea">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <p>Drag & drop files here or</p>
+                        <input type="file" id="fileInput" multiple>
+                        <label for="fileInput" class="btn btn-primary">
+                            <i class="fas fa-folder-open"></i> Select Files
+                        </label>
+                    </div>
+                    <div id="uploadInfo" class="hidden">
+                        <h3>Upload Status</h3>
+                        <div id="uploadProgress" class="progress-container">
+                            <div class="progress-bar"></div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <div id="torrentInfo" class="info-box">
+                            <p><strong>Torrent Info Hash:</strong> <span id="infoHash" class="mono"></span></p>
+                            <p><strong>Magnet Link:</strong> <a id="magnetLink" href="#" class="magnet-link"></a></p>
+                            <button id="copyMagnet" class="btn btn-small">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="download-section card">
+                    <div class="section-header">
+                        <i class="fas fa-download section-icon"></i>
+                        <h2>Download Files</h2>
+                    </div>
+                    <div class="download-input">
+                        <input type="text" id="torrentInput" placeholder="Paste magnet link or info hash">
+                        <button id="downloadBtn" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                    <div id="torrentList" class="torrent-list">
+                    </div>
+                </section>
+
+                <section class="player-section hidden card" id="playerSection">
+                    <div class="section-header">
+                        <i class="fas fa-play-circle section-icon"></i>
+                        <h2>Media Player</h2>
+                    </div>
+                    <div class="player-container">
+                        <video id="videoPlayer" controls></video>
+                    </div>
+                    <div class="file-info info-box">
+                        <h3 id="fileName">File Name</h3>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Download Speed: <span id="downloadSpeed">0 KB/s</span></span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-users"></i>
+                                <span>Peers: <span id="peerCount">0</span></span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Progress: <span id="downloadProgress">0%</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="log-section card">
+                    <div class="section-header">
+                        <i class="fas fa-list-alt section-icon"></i>
+                        <h2>Activity Log</h2>
+                        <button id="clearLog" class="btn btn-small">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                    <div id="logContainer" class="log-container">
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <p>Browser-based P2P file sharing with WebTorrent</p>
+            <p class="version">Version 1.0.0</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
